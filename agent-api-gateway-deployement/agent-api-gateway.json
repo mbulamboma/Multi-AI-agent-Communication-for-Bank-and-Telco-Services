@@ -1,0 +1,38 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "agent-api",
+    "version" : "2025-11-28 17:19:06UTC"
+  },
+  "servers" : [ {
+    "url" : "https://w3kd6p93v8.execute-api.us-east-1.amazonaws.com/{basePath}",
+    "variables" : {
+      "basePath" : {
+        "default" : ""
+      }
+    }
+  } ],
+  "paths" : {
+    "/" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "x-amazon-apigateway-integrations" : {
+      "unusedIntegration_evokuhv" : {
+        "payloadFormatVersion" : "2.0",
+        "type" : "aws_proxy",
+        "httpMethod" : "POST",
+        "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:365591124845:function:ask_agent_prompt/invocations",
+        "connectionType" : "INTERNET"
+      }
+    }
+  },
+  "x-amazon-apigateway-importexport-version" : "1.0"
+}
