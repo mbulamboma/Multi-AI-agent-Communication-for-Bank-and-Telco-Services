@@ -106,7 +106,8 @@ function addMessage(message, sender) {
     messageDiv.className = `message ${sender}-message`;
     
     const p = document.createElement('p');
-    p.textContent = message;
+    // Use innerText to preserve line breaks and whitespace
+    p.innerText = message;
     messageDiv.appendChild(p);
     
     chatMessages.appendChild(messageDiv);
@@ -156,8 +157,10 @@ function clearChat() {
         const chatMessages = document.getElementById('chatMessages');
         chatMessages.innerHTML = `
             <div class="message assistant-message">
-                <p>Hello! 👋 I'm your Telco Assistant. How can I help you today?</p>
+                <p>Hello! 👋 I'm your Telco Assistant. How can I help you today?
                 <small>I can help you activate subscriptions, check balance, transfer money, and get recommendations.</small>
+                </p>
+                
             </div>
         `;
         sessionId = generateSessionId();
