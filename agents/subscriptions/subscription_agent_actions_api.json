@@ -1,0 +1,144 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Subscription Actions API",
+    "description": "API for managing subscription operations including activation and balance checking",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/activateSubscription": {
+      "post": {
+        "summary": "Activate a subscription",
+        "description": "Activates a subscription for a customer",
+        "operationId": "activateSubscription",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phoneNumber": {
+                    "type": "string",
+                    "description": "The phone number of the customer (e.g., +243891234567)"
+                  },
+                  "planId": {
+                    "type": "string",
+                    "description": "The subscription plan ID to activate (e.g., F_D_1GB, DATA_1000_1DAY)"
+                  }
+                },
+                "required": ["phoneNumber", "planId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Subscription activated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "subscriptionId": {
+                      "type": "string",
+                      "description": "The unique identifier of the activated subscription"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the subscription"
+                    },
+                    "activationDate": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The date and time when the subscription was activated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid input parameters"
+          },
+          "404": {
+            "description": "Customer not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/checkBalance": {
+      "post": {
+        "summary": "Check account balance",
+        "description": "Checks the current balance for a customer account",
+        "operationId": "checkBalance",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customerId": {
+                    "type": "string",
+                    "description": "The unique identifier of the customer"
+                  },
+                  "accountType": {
+                    "type": "string",
+                    "description": "The type of account to check",
+                    "enum": ["prepaid", "postpaid", "credits"]
+                  }
+                },
+                "required": ["customerId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Balance retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "customerId": {
+                      "type": "string",
+                      "description": "The unique identifier of the customer"
+                    },
+                    "balance": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "The current balance amount"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "description": "The currency code (e.g., USD, EUR)"
+                    },
+                    "lastUpdated": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The last time the balance was updated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid input parameters"
+          },
+          "404": {
+            "description": "Customer or account not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}

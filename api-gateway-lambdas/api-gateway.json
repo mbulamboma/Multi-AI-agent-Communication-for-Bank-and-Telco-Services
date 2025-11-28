@@ -1,0 +1,82 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "lobapay",
+    "version" : "2025-11-19 23:22:03UTC"
+  },
+  "servers" : [ {
+    "url" : "https://w39lzo6tk7.execute-api.us-east-1.amazonaws.com/{basePath}",
+    "variables" : {
+      "basePath" : {
+        "default" : ""
+      }
+    }
+  } ],
+  "paths" : {
+    "/activateSubscription" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /activateSubscription"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:365591124845:function:activate_subscription_handler/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/checkBalance" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /checkBalance"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:365591124845:function:check_balance_handler/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/getSubscriptionRecommendation" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /getSubscriptionRecommendation"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:365591124845:function:get_subscription_recommendation_handler/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/transferMoney" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /transferMoney"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:365591124845:function:transfer_money_handler/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    }
+  },
+  "x-amazon-apigateway-importexport-version" : "1.0"
+}

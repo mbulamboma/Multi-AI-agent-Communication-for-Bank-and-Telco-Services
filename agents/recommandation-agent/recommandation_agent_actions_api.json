@@ -1,0 +1,86 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Recommendation Agent API",
+    "description": "API for subscription recommendations based on user profile and usage patterns",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/getSubscriptionRecommendation": {
+      "post": {
+        "summary": "Get personalized subscription recommendation",
+        "description": "Analyzes user's active subscriptions and recommends the best plan",
+        "operationId": "getSubscriptionRecommendation",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customerId": {
+                    "type": "string",
+                    "description": "The phone number of the customer (e.g., +243891234567)"
+                  }
+                },
+                "required": ["customerId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Recommendation generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the recommendation request"
+                    },
+                    "recommendation": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The plan ID"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The plan name"
+                        },
+                        "price": {
+                          "type": "number",
+                          "description": "The plan price in FC"
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "The plan description"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Recommendation message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid input parameters"
+          },
+          "404": {
+            "description": "Customer not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}
